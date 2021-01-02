@@ -113,13 +113,13 @@ void Accio_odom::odometry_update()
   v_right = d_right / dt;
 
   // velocities in x & y
-  vc = ((v_left + v_right)/2);
+  vc = (v_left + v_right)*0.5;
     // get rotation of the center of the robot
-  vth = ((v_right - v_left) / WHEEL_TRACK);
+  vth = (v_right - v_left) / WHEEL_TRACK;
 
   // distance moved in x & y
-  x += (vc * cos(theta) ) * dt;
-  y += (vc * sin(theta) ) * dt;
+  x += vc * cos(theta) * dt;
+  y += vc * sin(theta) * dt;
   theta += vth * dt;
 
   // create quaternion from yaw

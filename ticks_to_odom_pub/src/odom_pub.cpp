@@ -76,7 +76,7 @@ void Accio_odom::lwheel_ticks_cb(const std_msgs::Int32::ConstPtr &lwheel_ticks_d
 {
   int _curr_lwheel_count = lwheel_ticks_data->data;
   int _delta_l_enc = _curr_lwheel_count - _prev_left_encoder;
-  d_left = TICKS_TO_METERS * _delta_l_enc;
+  d_left = _delta_l_enc * M_PI * WHEEL_DIAMETER/TPR;
   _prev_left_encoder = _curr_lwheel_count;
 }
 
@@ -84,7 +84,7 @@ void Accio_odom::rwheel_ticks_cb(const std_msgs::Int32::ConstPtr &rwheel_ticks_d
 {
   int _curr_rwheel_count = rwheel_ticks_data->data;
   int _delta_r_enc = _curr_rwheel_count - _prev_right_encoder;
-  d_right = TICKS_TO_METERS * _delta_r_enc;
+  d_right = _delta_r_enc * M_PI * WHEEL_DIAMETER/TPR;
   _prev_right_encoder = _curr_rwheel_count;
 }
 
